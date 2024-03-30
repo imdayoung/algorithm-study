@@ -5,8 +5,9 @@ def solution(n, times):
 
     while start <= end:
         mid = (start + end) // 2
-        people = 0
+        
         # mid분 동안 한 명의 심사관이 심사할 수 있는 사람의 수
+        people = 0
         for time in times:
             people += mid // time
             if people >= n:
