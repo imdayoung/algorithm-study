@@ -2,13 +2,13 @@ import sys
 
 
 T, W = map(int, sys.stdin.readline().split())
-jadus = []
+jadus = [0]
 for _ in range(T):
     jadus.append(int(sys.stdin.readline()))
 
 dp = [[0 for _ in range(W + 1)] for _ in range(T + 1)]
 
-for i in range(1, T + 1):
+for i in range(T + 1):
     if jadus[i] == 1:
         dp[i][0] = dp[i - 1][0] + 1
     else:
