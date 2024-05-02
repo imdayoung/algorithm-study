@@ -5,8 +5,15 @@ answer = 0
 N = int(sys.stdin.readline())
 buildings = list(int(sys.stdin.readline().rstrip()) for _ in range(N))
 
+stack = []
+for building in buildings:
+    while stack and stack[-1] <= building:
+        stack.pop()
+    stack.append(building)
 
+    answer += len(stack) - 1
 
+print(answer)
 
 
 # # 당근 시간 초과
