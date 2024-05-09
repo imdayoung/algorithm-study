@@ -2,6 +2,7 @@ package JAVA;
 import java.io.*;
 import java.util.StringTokenizer;
 
+
 public class _2525 {
 
     public static void main(String[] args) throws IOException {
