@@ -1,4 +1,3 @@
-# 21M 53S
 import sys
 
 
