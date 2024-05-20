@@ -1,4 +1,3 @@
-# 14M 39S
 import sys
 import heapq
 
@@ -19,7 +18,7 @@ def dijkstra(start):
                 heapq.heappush(q, (cost, i[0]))
 
 
-INF = int(1e9)
+INF = int(1e20)
 
 N, M = map(int, sys.stdin.readline().split())
 is_visible = list(map(int, sys.stdin.readline().split()))
