@@ -3,13 +3,16 @@ import sys
 
 N = int(sys.stdin.readline())
 K = int(sys.stdin.readline())
-sensors = list(set(map(int, sys.stdin.readline().split())))
-sensors.sort()
-print("sensors: ", sensors)
+sensors = sorted(list(map(int, sys.stdin.readline().split())))
 
-# diff = []
-# for i in range(N - 2):
-#     print(sensors[i + 1], sensors[i], sensors[i + 1] - sensors[i])
-#     diff.append(sensors[i + 1] - sensors[i])
+diff = [sensors[i + 1] - sensors[i] for i in range(N - 1)]
+diff.sort()
 
-# print("diff:", diff)
+if N == 1:
+    print(0)
+    exit()
+    
+for _ in range(K - 1):
+    diff.pop()
+    
+print(sum(diff))
