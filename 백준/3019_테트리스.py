@@ -1,6 +1,6 @@
 import sys
 import copy
-sys.stdin = open("input.txt")
+
 
 def get_block_element(num):
     temp = [[1 for _ in range(3)] for _ in range(2)]
@@ -25,27 +25,36 @@ def get_block_element(num):
     return blocks[num - 1]
 
 
-# 블록을 놨는데 열의 1 사이에 0이 있는지 (빈 공간이 있는지)
-def check_blank(graph):
-    for in range():
-        
+# 놓을 수 있는 곳인지 확인
+# def is_puttable(x, y, block):
+#     for i in range(x, x + block_height):
+#         for j in range(y, y + block_width):
+#             if 
+            
     
 
-for tc in range(1, 3 + 1):
-    print(f"===================== {tc} =====================")
-    answer = 0
+answer = 0
 
-    C, P = map(int, sys.stdin.readline().split())
-    heights = list(map(int, sys.stdin.readline().split()))
-    R = max(heights) + 4
+C, P = map(int, sys.stdin.readline().split())
+heights = list(map(int, sys.stdin.readline().split()))
+R = max(heights) + 4
 
-    graph = [[0 for _ in range(C)] for _ in range(R)]
-    for j in range(C):
-        for i in range(R - 1, R - 1 - heights[j], -1):
-            graph[i][j] = 1
-    for g in graph:
-        print(g)
-        
-    block = get_block_element(P)
-    for b in block:
-        print(b)
+graph = [[0 for _ in range(C)] for _ in range(R)]
+for j in range(C):
+    for i in range(R - 1, R - 1 - heights[j], -1):
+        graph[i][j] = 1
+# for g in graph:
+#     print(g)
+    
+block = get_block_element(P)
+block_height = len(block)
+block_width = len(block[0])
+# for b in block:
+#     print(b)
+
+# for i in range(R - 1):
+#     for j in range(C - 1):
+#         if is_puttable(i, j, block):
+#             answer += 1
+
+print(answer)

@@ -4,7 +4,7 @@ import sys
 N = int(sys.stdin.readline())
 works = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(N)]
 
-works.sort(key = lambda x:-x[1])
+works.sort(key = lambda x:(-x[1], x[0]))
 print(works)
 
 timeline = [0 for _ in range(24)]
