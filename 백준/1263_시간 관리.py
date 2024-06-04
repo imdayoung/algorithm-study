@@ -4,18 +4,18 @@ import sys
 N = int(sys.stdin.readline())
 works = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(N)]
 
-works.sort(key = lambda x:(-x[1], x[0]))
+works.sort(key = lambda x:(-x[1], -x[0]))
 print(works)
 
 timeline = [0 for _ in range(24)]
-cur_time = works[0][1] - 1
+cur_time = works[0][1]
 
 for work in works:
     print(work, cur_time)
     long = work[0]
     deadline = work[1]
     
-    if long >= cur_time:
+    if long > cur_time:
         answer = -1
         break
     

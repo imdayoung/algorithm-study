@@ -6,9 +6,7 @@
 1(1(1(1(1(1(1(0(1234567890))))))))
 1()66(5)
 92(34)66(52(3))
-"""
 
-"""
 19
 3
 8
@@ -17,7 +15,14 @@
 7
 24
 """
+import sys
+from collections import deque
+sys.stdin = open("input.txt")
 
+
+
+
+"""
 import sys
 from collections import deque
 sys.stdin = open("input.txt")
@@ -74,31 +79,33 @@ else:
     answer += temp
 
 print(answer)
+"""
+
+"""
+# 메모리 초과
+import sys
+from collections import deque
 
 
-# # 메모리 초과
-# import sys
-# from collections import deque
+for _ in range(7):
+    S = list(map(str, sys.stdin.readline().rstrip()))
 
+    stack = []
+    brackets = deque()
 
-# for _ in range(7):
-#     S = list(map(str, sys.stdin.readline().rstrip()))
-
-#     stack = []
-#     brackets = deque()
-
-#     for i in range(len(S)):
-#         if S[i] == "(":
-#             stack.append(i)
-#         elif S[i] == ")":
-#             brackets.append((stack.pop(), i))
+    for i in range(len(S)):
+        if S[i] == "(":
+            stack.append(i)
+        elif S[i] == ")":
+            brackets.append((stack.pop(), i))
             
-#     while brackets:
-#         temp = ""
-#         start, end = brackets.popleft()
-#         for _ in range(int(S[start - 1])):
-#             temp += ''.join(i for i in S[start + 1:end])
-#         for i in range(start - 1, end + 1):
-#             S[i] = ""
-#         S[start + 1] = temp
-#     print(len(''.join(i for i in S)))
+    while brackets:
+        temp = ""
+        start, end = brackets.popleft()
+        for _ in range(int(S[start - 1])):
+            temp += ''.join(i for i in S[start + 1:end])
+        for i in range(start - 1, end + 1):
+            S[i] = ""
+        S[start + 1] = temp
+    print(len(''.join(i for i in S)))
+"""

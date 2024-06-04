@@ -1,12 +1,18 @@
-# 0
-# 2
-# 1
-# 2
-
-# L <= X <= R인 X 중 8이 가장 적게 들어있는 수의 8의 개수
 import sys
-sys.stdin = open("input.txt")
 
 
-L, R = map(int, sys.stdin.readline().split())
-# 8이 들어갈 수밖에 없는 자리가 있나
+answer = 0
+
+L, R = map(str, sys.stdin.readline().split())
+len_L, len_R = len(L), len(R)
+
+if len_L != len_R:
+    answer = 0
+else:
+    for i in range(len_L):
+        if L[i] == R[i] == '8':
+            answer += 1
+        elif L[i] != R[i]:
+            break
+    
+print(answer)

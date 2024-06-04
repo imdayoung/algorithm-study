@@ -1,39 +1,72 @@
 import sys
-import copy
 
 
-def get_block_element(num):
-    temp = [[1 for _ in range(3)] for _ in range(2)]
-    block3 = copy.deepcopy(temp)
-    block4 = copy.deepcopy(temp)
-    block5 = copy.deepcopy(temp)
-    block6 = copy.deepcopy(temp)
-    block7 = copy.deepcopy(temp)
-    
-    block3[0][0], block3[1][2] = 0, 0
-    block4[0][2], block4[1][0] = 0, 0
-    block5[0][0], block5[0][2] = 0, 0
-    block6[0][0], block6[0][1] = 0, 0
-    block7[0][1], block7[0][2] = 0, 0
-
-    blocks = [
-        [[1 for _ in range(1)] for _ in range(4)],
-        [[1 for _ in range(2)] for _ in range(2)],
-        block3, block4, block5, block6, block7
-    ]
-    
-    return blocks[num - 1]
-
-
-# 놓을 수 있는 곳인지 확인
-# def is_puttable(x, y, block):
-#     for i in range(x, x + block_height):
-#         for j in range(y, y + block_width):
-#             if 
+def block_1():
+    answer = 0
+    # 세로
+    for i in range(R - 2):
+        for j in range(C):
+            temp = []
+            temp.append([graph[i][j]])
+            temp.append([graph[i + 1][j]])
+            temp.append([graph[i + 2][j]])
+            temp.append([graph[i + 3][j]])
+            if temp == [[0], [0], [0], [1]]:
+                answer += 1
+    # 가로 엥
+    # for i in range(R):
+    #     for j in range(C - 4):
+    #         temp = []
+    #         temp.append(graph[i][j:j+4])
+    #         if temp == []:
+    #             answer += 1
+    return answer
             
     
+def block_2():
+    answer = 0
+    
+    
+def block_3():
+    answer = 0
+    
+    
+def block_4():
+    answer = 0
+    
+    
+def block_5():
+    answer = 0
+    
+    
+def block_6():
+    answer = 0
+    
+    
+def block_7():
+    answer = 0
+   
 
-answer = 0
+def getCases(num):
+    answer = 0
+    
+    if num == 1:
+        answer = block_1()
+    elif num == 2:
+        answer = block_2()
+    elif num == 3:
+        answer = block_3()
+    elif num == 4:
+        answer = block_4()
+    elif num == 5:
+        answer = block_5()
+    elif num == 6:
+        answer = block_6()
+    else:
+        answer = block_7()
+        
+    return answer
+    
 
 C, P = map(int, sys.stdin.readline().split())
 heights = list(map(int, sys.stdin.readline().split()))
@@ -43,18 +76,9 @@ graph = [[0 for _ in range(C)] for _ in range(R)]
 for j in range(C):
     for i in range(R - 1, R - 1 - heights[j], -1):
         graph[i][j] = 1
+graph.append([1 for _ in range(C)])
 # for g in graph:
 #     print(g)
-    
-block = get_block_element(P)
-block_height = len(block)
-block_width = len(block[0])
-# for b in block:
-#     print(b)
 
-# for i in range(R - 1):
-#     for j in range(C - 1):
-#         if is_puttable(i, j, block):
-#             answer += 1
-
+answer = getCases(P)
 print(answer)
