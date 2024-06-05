@@ -16,11 +16,21 @@
 24
 """
 import sys
-from collections import deque
 sys.stdin = open("input.txt")
 
 
+answer = 0
+S = sys.stdin.readline().rstrip()
+print(f"S: {S}")
 
+stack = []
+for i in range(len(S)):
+    if S[i] == "(":
+        
+    elif S[i] == ")":
+        
+        
+print(answer)
 
 """
 import sys
