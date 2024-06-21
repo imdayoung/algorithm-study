@@ -4,11 +4,11 @@ import sys
 
 def get_palindrome():
     dp = [[False for _ in range(N + 1)] for _ in range(N + 1)]
-    # for i in range(1, N + 1):
-    #     dp[i][i] = True
-    # for d in dp:
-    #     print(d)
-
+    for i in range(N):
+        if nums[i] == nums[i][::-1]:
+            dp[i] = True
+            
+    
 
 N = int(sys.stdin.readline())
 nums = list(map(int, sys.stdin.readline().split()))
@@ -19,7 +19,7 @@ get_palindrome()
 
 """
 # 무지성 구현 -> 시간 초과
-
+import sys
 
 
 answers = []
