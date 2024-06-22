@@ -1,13 +1,35 @@
-# 마을을 두 개로 분리
-# 각 분리된 마을 안에 집들이 서로 연결되어야 함
-
-# 분리된 두 마을 사이에 있는 길들은 제거
-# 분리된 마을 안에서 임의의 두 집 사이에 경로가 항상 존재하게 하면서 길을 없앨 수 있음
-# 필요없는 길 모두 없애고 나머지 길의 유지비의 합을 최소로
+# 최소 스패팅 트리, Kruskal Algorithm, Union-Find
 import sys
 
 
-N, M = map(int, sys.stdin.readline().split())
-for _ in range(M):
-    A, B, C = map(int, sys.stdin.readline().split())
+def find(a):
+    if a == parent[a]:
+        return a
+    return find(parent[a])
     
+    
+def union(a, b):
+    a = find(a)
+    b = find(b)
+    
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
+    
+    
+answer = 0
+
+N, M = map(int, sys.stdin.readline().split())
+edges = [list(map(int, sys.stdin.readline().split())) for _ in range(M)]
+edges.sort(key = lambda x : x[2])
+max_edge = 0
+
+parent = [i for i in range(N + 1)]
+for i in range(M):
+    if find(edges[i][0]) != find(edges[i][1]):
+        answer += edges[i][2]
+        max_edge = max(max_edge, edges[i][2])
+        union(edges[i][0], edges[i][1])
+
+print(answer - max_edge)

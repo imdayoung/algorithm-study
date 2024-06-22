@@ -1,24 +1,41 @@
-from itertools import combinations
+# 메모리 초과
 import sys
-sys.stdin = open("input.txt")
+from itertools import combinations
     
 
-for _ in range(2):
-    answers = []
-    possible = set()
-    
-    n = int(sys.stdin.readline())
-    weights = list(map(int, sys.stdin.readline().split()))
-    m = int(sys.stdin.readline())
-    check_weights = list(map(int, sys.stdin.readline().split()))
-
+def get_possible_weights(arr, n):
+    sum_arr = sum(arr)
+    dp = [False for _ in range(sum_arr + 1)]
+    # 합으로 구할 수 잇는 거 구하고 for문으로 돌면서 뺀 값도 true로 만들어주면 되지 않을까
     for i in range(1, n + 1):
-        for comb in list(combinations(weights, i)):
-            print(comb)
-            
-    
-            
+        for comb in list(combinations(arr, i)):
+            dp[sum(comb)] = True
 
+    for i in range(sum_arr, 0, -1):
+        for j in range(i - 1, -1, -1):
+            if dp[i] and dp[j]:
+                dp[i - j] = True
+                
+    return dp
+
+
+answers = []
+
+n = int(sys.stdin.readline())
+weights = list(map(int, sys.stdin.readline().split()))
+m = int(sys.stdin.readline())
+check_weights = list(map(int, sys.stdin.readline().split()))
+
+dp = get_possible_weights(weights, n)
+
+for check in check_weights:
+    if dp[check]:
+        answers.append("Y")
+    else:
+        answers.append("N")
+        
+print(*answers)
+    
 
 """
 # 시간 초과
