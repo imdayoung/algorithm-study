@@ -1,4 +1,3 @@
-# dp라고 ,,,?
 import sys
 
 
