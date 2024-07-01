@@ -3,6 +3,21 @@ import sys
 
 N = int(sys.stdin.readline())
 
+if N == 1:
+    print(0)
+    exit()
+
+dp = [0 for _ in range(N + 1)]
+dp[2] = 1
+
+for i in range(3, N + 1):
+    if i % 2 == 0:
+        dp[i] = (dp[i - 1] * 2 + 1) % 1000000007
+    else:
+        dp[i] = (dp[i - 1] * 2 - 1) % 1000000007
+
+print(dp[-1])
+
 
 # # 음 이건 분명히 아닌 것 같다
 # import sys
