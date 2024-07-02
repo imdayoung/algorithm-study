@@ -1,16 +1,15 @@
-# 엥 벽부수고 이동하기랑 똑같은 거 아닌가 까먹음 ;;
 import sys
 from collections import deque
 
 
-def move():
-    queue = deque([(0, 0)])
-    visited = [[[0 for _ in range(M)] for _ in range(N)] for _ in range(2)]
+def move(x, y):
+    queue = deque([(x, y)])
+    
+    visited = [[INF for _ in range(M)] for _ in range(N)]
+    visited[x][y] = 0
     
     while queue:
-        x, y, z = queue.popleft()
-        if x == N - 1 and y == M - 1:
-            return z
+        x, y = queue.popleft()
         
         for i in range(4):
             nx = x + dx[i]
@@ -18,20 +17,27 @@ def move():
             if nx < 0 or nx > N - 1 or ny < 0 or ny > M - 1:
                 continue
             
-            # if graph[nx][ny] == 1 :
+            # 방문한 적 없는 곳
+            if visited[nx][ny] == INF:
+                visited[nx][ny] = visited[x][y] + graph[nx][ny]
+                queue.append((nx, ny))
                 
+            # 방문했던 곳    
+            else:
+                if visited[x][y] + graph[nx][ny] < visited[nx][ny]:
+                    visited[nx][ny] = visited[x][y] + graph[nx][ny]
+                    queue.append((nx, ny))
             
-    return -1
+    return visited
     
+    
+INF = int(1e9)
 
 dx = [1, 0, -1, 0]
 dy = [0, 1, 0, -1]
 
 M, N = map(int, sys.stdin.readline().split())
 graph = [list(map(int, sys.stdin.readline().rstrip())) for _ in range(N)]
-
-for g in graph:
-    print(g)
     
-answer = move()
-print(answer)
+breaked_walls = move(0, 0)
+print(breaked_walls[-1][-1])
