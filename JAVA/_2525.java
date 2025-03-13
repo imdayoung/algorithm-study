@@ -1,7 +1,5 @@
-package JAVA;
 import java.io.*;
 import java.util.StringTokenizer;
-
 
 public class _2525 {
 

@@ -1,6 +1,4 @@
-package JAVA;
 import java.io.*;
-
 
 public class _18108 {
 
