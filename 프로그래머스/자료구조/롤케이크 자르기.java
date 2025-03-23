@@ -1,3 +1,4 @@
+package 프로그래머스.자료구조;
 import java.util.*;
 
 class Solution {
