@@ -1,6 +1,5 @@
 package 구름.그리디;
 import java.io.*;
-import java.util.*;
 
 class 통증 {
 	public static void main(String[] args) throws Exception {
